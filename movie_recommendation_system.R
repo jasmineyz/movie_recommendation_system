@@ -35,7 +35,6 @@ movielens %>% as_tibble()
 movielens %>% 
   summarize(n_users = n_distinct(userId),
             n_movies = n_distinct(movieId))
-# Multiplying the number of unique users (n_users = 671) and the number unique movies (n_movies = 9066) gives a total more than 5 million. However, our movielens data table has 100004 rows. This implies that not every movie is rated by every user. Therefore it is obvious that if we generate a table with the unique users as rows and the movies as columns, there will be a lot many empty cells. 
 
 # Select the top 5 movies based on number of ratings
 keep <- movielens %>%
@@ -116,7 +115,7 @@ mu_hat
 naive_rmse <- RMSE(test_set$rating, mu_hat)
 naive_rmse
 
-# The following code confirms that any number other than the true rating for all movies and users would result into a higher RMSE
+# The following code confirms that any number other than mu_hat would result into a higher RMSE
 predictions <- rep(2.5, nrow(test_set))
 RMSE(test_set$rating, predictions)
 
